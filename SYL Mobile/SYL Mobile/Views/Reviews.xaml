@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SYL_Mobile.Views.Reviews" 
+             Title="{Binding sellerName}"
+             xmlns:local="clr-namespace:SYL_Mobile.ViewModels"  
+             xmlns:model="clr-namespace:SYL_Mobile.Models"  
+             x:Name="BrowseReviews"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Button x:Name="reviewButton"
+                BackgroundColor="Green"
+                Text="Rate this seller"
+                Margin="0, 30, 0, 15"
+                HorizontalOptions="Center"
+                Command="{Binding PlaceReviewCommand}"/>
+
+            <RefreshView x:DataType="local:ReviewViewModel" Command="{Binding LoadReviewsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ReviewsListView"
+                ItemsSource="{Binding Reviews}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" x:DataType="model:Review">
+                                <Label Text="{Binding username}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                <rating:SfRating x:Name="rating" ReadOnly="True" ItemSize="16" Value="{Binding rating}">
+                                    <rating:SfRating.RatingSettings>
+                                        <rating:SfRatingSettings RatedStroke="Black" RatedFill="Yellow"/>
+                                    </rating:SfRating.RatingSettings>
+                                </rating:SfRating>
+                                <Label Text="{Binding text}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

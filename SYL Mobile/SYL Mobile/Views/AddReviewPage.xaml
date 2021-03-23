@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SYL_Mobile.ViewModels" 
+             x:Class="SYL_Mobile.Views.AddReviewPage"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label x:Name="_label" Text="You are rating: " FontSize="Large" />
+            
+            <StackLayout Orientation="Horizontal"/>
+            <Label Text="Choose a rating:" FontSize="Large"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                <rating:SfRating x:Name="rating" PropertyChanged="rating_PropertyChanged"  Precision="Standard">
+                    <rating:SfRating.RatingSettings>
+                        <rating:SfRatingSettings RatedStroke="Black" RatedFill="Yellow"/>
+                    </rating:SfRating.RatingSettings>
+                </rating:SfRating>
+            </StackLayout>
+
+            <Label Text="Leave your comment here:" FontSize="Large" />
+            <Entry x:Name="_entry" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Keyboard="Default" />
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="addOrder" Text="Add review" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

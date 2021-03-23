@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SYL_Mobile.ViewModels" 
+             x:Class="SYL_Mobile.Views.OrderAddPage">
+    <ContentPage.Content>
+        <StackLayout Padding="50" VerticalOptions="Center">
+            <Label x:Name="_label"
+               HorizontalOptions="Center"
+               FontSize="20"
+               Text="Selected product: " />
+            <Label Text="Select the time to pick up your product." HorizontalOptions="Center" FontSize="15"/>
+            <TimePicker x:Name="_timePicker"
+                HorizontalOptions="Center"
+                Time="{Binding Time}"
+                    Format="t"
+                    />
+
+            <Label Text="Quantity (kg)" FontSize="Medium" HorizontalOptions="Center" />
+            <Entry x:Name="_entry" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Keyboard="Numeric" HorizontalOptions="CenterAndExpand" WidthRequest="60" HorizontalTextAlignment="Center"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="addOrder" Text="Add order" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
