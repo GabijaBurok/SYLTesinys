@@ -24,16 +24,16 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="10" x:DataType="model:Review">
-                                <Label Text="{Binding username}" 
+                                <Label Text="{Binding customerId}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                                <rating:SfRating x:Name="rating" ReadOnly="True" ItemSize="16" Value="{Binding rating}">
+                                <rating:SfRating x:Name="rating" ReadOnly="True" ItemSize="16" Value="{Binding reviewRating}">
                                     <rating:SfRating.RatingSettings>
                                         <rating:SfRatingSettings RatedStroke="Black" RatedFill="Yellow"/>
                                     </rating:SfRating.RatingSettings>
                                 </rating:SfRating>
-                                <Label Text="{Binding text}" 
+                                <Label Text="{Binding reviewComment}" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
