@@ -15,7 +15,7 @@ namespace SYL_Mobile.Services
         public static async Task<IEnumerable<Order>> loadOrders()
         {
             HttpClient client = new HttpClient();
-            string url = "http://"+Secrets.IP+"/order/4";
+            string url = "http://localhost:5001/order/4";
             string response = await client.GetStringAsync(url);
             var orderList = JsonSerializer.Deserialize<List<Order>>(response);
             return orderList;
@@ -24,7 +24,7 @@ namespace SYL_Mobile.Services
         public static async Task<int> getSellerId(String sellerName)
         {
             HttpClient client = new HttpClient();
-            string url = "http://"+Secrets.IP+"/seller?name=" + sellerName;
+            string url = "http://localhost:5001/seller?name=" + sellerName;
             string response = await client.GetStringAsync(url);
             return int.Parse(response);
             
@@ -32,7 +32,7 @@ namespace SYL_Mobile.Services
 
         public static async Task<bool> AddOrderAsync(FormUrlEncodedContent order)
         {
-            var url = "http://"+Secrets.IP+"/order/add";
+            var url = "http://localhost:5001/order/add";
             var client = new HttpClient();
             var response = await client.PostAsync(url, order);
             return await Task.FromResult(true);

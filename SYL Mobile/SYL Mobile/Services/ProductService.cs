@@ -16,7 +16,7 @@ namespace SYL_Mobile.Services
         public static async Task<IEnumerable<Product>> loadProducts()
         {
             HttpClient client = new HttpClient();
-            string url = "http://"+Secrets.IP+"/product";
+            string url = "http://localhost:5001/product";
             string response = await client.GetStringAsync(url);
             var productList= JsonSerializer.Deserialize<List<Product>>(response);
             return productList;
@@ -24,7 +24,7 @@ namespace SYL_Mobile.Services
         
         public static async Task<bool> AddProductAsync(FormUrlEncodedContent product)
         {
-            var url = "http://"+Secrets.IP+"/product/add";
+            var url = "http://localhost:5001/product/add";
             var client = new HttpClient();
             var response = await client.PostAsync(url, product);
 

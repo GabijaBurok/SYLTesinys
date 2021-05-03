@@ -15,7 +15,7 @@ namespace SYL_Mobile.Services
         public static async Task<IEnumerable<Review>> loadReviews(string adress)
         {
             HttpClient client = new HttpClient();
-            string url = "http://"+Secrets.IP+"/ratings/" + adress;
+            string url = "http://localhost:5001/ratings/" + adress;
             string response = await client.GetStringAsync(url);
             var reviewList = JsonSerializer.Deserialize<List<Review>>(response);
             return reviewList;
@@ -23,7 +23,7 @@ namespace SYL_Mobile.Services
         public static async Task<Double> loadAvgReview(string adress)
         {
             HttpClient client = new HttpClient();
-            string url = "http://"+Secrets.IP+"/ratings/" + adress + "/avg";
+            string url = "http://localhost:5001/ratings/" + adress + "/avg";
             string response = await client.GetStringAsync(url);
             return Convert.ToDouble(response);
         }
@@ -31,7 +31,7 @@ namespace SYL_Mobile.Services
 
         public static async Task<bool> AddReviewAsync(FormUrlEncodedContent review, String sellerName)
         {
-            var url = "http://"+Secrets.IP+"/ratings/" + sellerName + "/add";
+            var url = "http://localhost:5001/ratings/" + sellerName + "/add";
             var client = new HttpClient();
             var response = await client.PostAsync(url, review);
             return await Task.FromResult(true);

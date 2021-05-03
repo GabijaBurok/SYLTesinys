@@ -105,7 +105,7 @@ namespace SYL_Mobile.ViewModels
                 var pos = adressCoordinates[product.adress];
                 if (location == null) product.distance = 0;
                 else product.distance = Math.Round(Distance.BetweenPositions(pos, new Position(location.Latitude, location.Longitude)).Kilometers, 2);
-                product.imagePath = $"http://{Secrets.IP}/images/{product.name.ToLower()}";
+                product.imagePath = $"http://localhost:5001/images/{product.name.ToLower()}";
 
                 if (i % 2 == 0) product.backgroundColor = Color.FromHex("#FFFFFF");
                 else product.backgroundColor = Color.FromHex("#F0F0F0");
