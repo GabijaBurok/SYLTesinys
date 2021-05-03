@@ -20,7 +20,7 @@ namespace SYL_Mobile.Views
             BindingContext = context = new ProductViewModel(product, position);
             InitializeComponent();
 
-            var path = $"http://{Secrets.IP}/images/{product.name.ToLower()}";
+            var path = $"http://localhost:5001/images/{product.name.ToLower()}";
             image.Source = ImageSource.FromUri(new System.Uri(path));
         }
     }

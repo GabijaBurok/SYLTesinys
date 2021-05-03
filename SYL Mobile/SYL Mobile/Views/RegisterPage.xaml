@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SYL_Mobile.Views.RegisterPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="First Name" HorizontalOptions="CenterAndExpand" Margin="20"/>
+            <Entry x:Name="name" Placeholder="Name"/>
+            <Label Text="Last Name" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="lastName" Placeholder="Surname"/>
+            <Label Text="Email" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="email" Placeholder="name@email.com"/>
+            <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="password" Placeholder="**********" IsPassword="True"/>
+            <Label Text="Repeat password" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="repeatedPassword" Placeholder="**********" IsPassword="True"/>
+            <Label Text="User type" HorizontalOptions="CenterAndExpand"/>
+            <Picker Title="Select a type" x:Name="Type" ItemsSource="{Binding Type}" ItemDisplayBinding="{Binding TypeName}"/>
+            <Button Text="Register" Clicked="RegisterClicked"/>
+            <Button Text="Cancel" Clicked="CancelClicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

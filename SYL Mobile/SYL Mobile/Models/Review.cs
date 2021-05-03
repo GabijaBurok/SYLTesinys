@@ -6,10 +6,10 @@ namespace SYL_Mobile.Models
 {
     class Review
 {
-        public string username { get; set; }
-        public double rating { get; set; }
-        public string text { get; set; }
-        public string sellerName { get; set; }
-        public double avgRating { get; set; }
+        public string reviewId { get; set; }
+        public string customerId { get; set; }
+        public string shopId { get; set; }
+        public int reviewRating { get; set; }
+        public string reviewComment { get; set; }
     }
 }
