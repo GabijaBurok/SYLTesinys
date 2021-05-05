@@ -7,43 +7,81 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using SYL.Mobile.Services;
+using SYL_Mobile.DTO.Review;
+using Newtonsoft.Json;
 
 namespace SYL_Mobile.Services
 {
     class ReviewService
 {
-        public static async Task<IEnumerable<Review>> loadReviews(string adress)
-        {
-            HttpClient client = new HttpClient();
-            string url = "http://localhost:5001/ratings/" + adress;
-            string response = await client.GetStringAsync(url);
-            var reviewList = JsonSerializer.Deserialize<List<Review>>(response);
-            return reviewList;
-        }
-        public static async Task<Double> loadAvgReview(string adress)
-        {
-            HttpClient client = new HttpClient();
-            string url = "http://localhost:5001/ratings/" + adress + "/avg";
-            string response = await client.GetStringAsync(url);
-            return Convert.ToDouble(response);
-        }
-        
+        private static readonly HttpClient client = new HttpClient();
 
-        public static async Task<bool> AddReviewAsync(FormUrlEncodedContent review, String sellerName)
+        public static async Task<bool> AddReviewAsync(NewReviewDTO review, String sellerName)
         {
-            var url = "http://localhost:5001/ratings/" + sellerName + "/add";
-            var client = new HttpClient();
-            var response = await client.PostAsync(url, review);
-            return await Task.FromResult(true);
+            var json = JsonConvert.SerializeObject(review);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var url = "http://localhost:5001/api/review";
+
+            try
+            {
+                var response = await client.PostAsync(url, httpContent);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return false;
         }
 
-        public static async Task<IEnumerable<Review>> GetReviewsAsync(string url, bool forceRefresh = false )
+        public static async Task<IEnumerable<Reviews>> GetReviewsAsync(string seller, bool forceRefresh = false )
         {
-            return await loadReviews(url);
+            try
+            {
+                string url = "http://localhost:5001/api/review/GetReviewsByShop/" + seller;
+                var response = await client.GetAsync(String.Format(url));
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    List<Reviews> reviews = JsonConvert.DeserializeObject<List<Reviews>>(responseBody);
+                    if (reviews != null)
+                    {
+                        return reviews;
+                    }
+                }
+            }
+            catch (Exception )
+            { }
+
+            return new List<Reviews>();
+
         }
-        public static async Task<Double> GetAvgReviewAsync(string url, bool forceRefresh = false)
+        public static async Task<Double> GetAvgReviewAsync(string seller, bool forceRefresh = false)
         {
-            return await loadAvgReview(url);
+
+            try
+            {
+                string url = "http://localhost:5000/api/review/avg" + seller;
+                var response = await client.GetAsync(String.Format(url));
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    var rating = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    if (rating != null)
+                    {
+                        return Convert.ToDouble(rating);
+                    }
+                }
+            }
+            catch (Exception)
+            { }
+
+            return 0;
         }
     }
 }

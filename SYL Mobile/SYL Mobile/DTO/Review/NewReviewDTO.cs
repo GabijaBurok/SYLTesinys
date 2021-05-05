@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SYL_Mobile.Models
+namespace SYL_Mobile.DTO.Review
 {
-    class Review
-{
-        public string reviewId { get; set; }
+    class NewReviewDTO
+    {
         public string customerId { get; set; }
-        public string shopId { get; set; }
+        public string shopName { get; set; }
         public int reviewRating { get; set; }
         public string reviewComment { get; set; }
     }

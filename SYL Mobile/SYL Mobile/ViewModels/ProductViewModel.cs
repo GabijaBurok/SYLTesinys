@@ -55,13 +55,13 @@ namespace SYL_Mobile.ViewModels
             productName = p.name;
 
             PlaceOrderCommand = new Command(async () => await App.Current.MainPage.Navigation.PushAsync(new OrderAddPage(p)));
-            CheckReviewCommand = new Command(async () => await App.Current.MainPage.Navigation.PushAsync(new Reviews(p)));
+            CheckReviewCommand = new Command(async () => await App.Current.MainPage.Navigation.PushAsync(new Views.Reviews(p)));
 
             var timer = new Timer((e) => UpdateDistance(), null, TimeSpan.Zero, TimeSpan.FromSeconds(5)); 
         }
         async void GetAvgReview(string url)
         {
-            Avg = await ReviewService.loadAvgReview(url);
+            Avg = await ReviewService.GetAvgReviewAsync(url);
         }
         
         async void UpdateDistance()

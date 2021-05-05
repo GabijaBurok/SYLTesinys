@@ -28,7 +28,7 @@ namespace SYL_Mobile.Views
 
         private void rating_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            reviewView.rating=rating.Value;
+            
         }
     }
 }

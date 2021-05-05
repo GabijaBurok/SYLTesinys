@@ -14,10 +14,10 @@ namespace SYL_Mobile.ViewModels
 {
     class ReviewViewModel : BaseViewModel
 {
-        private Lazy<Review> _selectedReview;
+        private Lazy<Models.Reviews> _selectedReview;
 
 
-        public ObservableCollection<Review> Reviews { get; set; }
+        public ObservableCollection<Models.Reviews> Reviews { get; set; }
         public Command LoadReviewsCommand { get; }
         public Command PlaceReviewCommand { get; set; }
 
@@ -26,7 +26,7 @@ namespace SYL_Mobile.ViewModels
         public ReviewViewModel(string sellerName)
         {
             this.sellerName = sellerName;
-            Reviews = new ObservableCollection<Review>();
+            Reviews = new ObservableCollection<Models.Reviews>();
             LoadReviewsCommand = new Command(async () => await ExecuteLoadReviewsCommand());
             PlaceReviewCommand = new Command(async () => await App.Current.MainPage.Navigation.PushAsync(new AddReviewPage(sellerName)));
 
@@ -61,7 +61,7 @@ namespace SYL_Mobile.ViewModels
             SelectedItem = null;
         }
 
-        public Lazy<Review> SelectedItem
+        public Lazy<Models.Reviews> SelectedItem
         {
 
             get => _selectedReview;

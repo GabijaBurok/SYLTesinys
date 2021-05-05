@@ -7,13 +7,15 @@ using Xamarin.Forms;
 using System.Net.Http;
 using System.Diagnostics;
 using Syncfusion.SfRating.XForms;
+using SYL_Mobile.DTO.Review;
 
 namespace SYL_Mobile.ViewModels
 {
     class AddReviewViewModel : BaseViewModel
 {
+        public string shopName;
         public string sellerName;
-        public double rating;
+        public int rating;
         public string comment;
 
         public AddReviewViewModel(string sellerName)
@@ -48,12 +50,13 @@ namespace SYL_Mobile.ViewModels
 
         private async void OnSave()
         {
-            var review = new FormUrlEncodedContent(new[]
+            var review = new NewReviewDTO
             {
-                new KeyValuePair<string, string>("username", "Lukas"),
-                new KeyValuePair<string, string>("rating", rating.ToString()),
-                new KeyValuePair<string, string>("text", comment),   
-            });
+                customerId = App.userId,
+                shopName = shopName,
+                reviewRating = rating,
+                reviewComment = comment
+            };
             await ReviewService.AddReviewAsync(review, sellerName);
             await App.Current.MainPage.Navigation.PopToRootAsync();
         }
