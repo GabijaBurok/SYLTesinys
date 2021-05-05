@@ -1,4 +1,6 @@
-﻿using SYL_Mobile.ViewModels;
+﻿using SYL_Mobile.DTO.User;
+using SYL_Mobile.Models;
+using SYL_Mobile.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +29,26 @@ namespace SYL_Mobile.Views
             _viewModel.OnAppearing();
         }
 
-        private void LoginClicked(object sender, EventArgs e)
-        { 
-            //darbas su login
-            App.Current.MainPage = new AppShell();
+        private async void LoginClicked(object sender, EventArgs e)
+        {
+            if (email.Text == null || email.Text == "" || password.Text == null || password.Text == "")
+            {
+                await DisplayAlert("", "Please enter email and password", "Ok");
+            }
+            else
+            {
+                Users user = await App._userService.UserLogin(email.Text, password.Text);
+                if (user != null)
+                {
+                    App.user = user;
+                    App.userId = user.userId;
+                    App.Current.MainPage = new AppShell();
+                }
+                else
+                {
+                    await DisplayAlert("", "Email or password is incorrect!", "Ok");
+                }
+            }
         }
 
         private void RegisterClicked(object sender, EventArgs args)

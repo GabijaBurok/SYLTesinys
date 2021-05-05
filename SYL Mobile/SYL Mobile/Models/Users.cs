@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SYL_Mobile.Models
 {
-    class User
+    public class Users
 {
         public string userId { get; set; }
         public string userName { get; set; }

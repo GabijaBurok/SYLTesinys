@@ -16,7 +16,7 @@
             <Label Text="Repeat password" HorizontalOptions="CenterAndExpand"/>
             <Entry x:Name="repeatedPassword" Placeholder="**********" IsPassword="True"/>
             <Label Text="User type" HorizontalOptions="CenterAndExpand"/>
-            <Picker Title="Select a type" x:Name="Type" ItemsSource="{Binding Type}" ItemDisplayBinding="{Binding TypeName}"/>
+            <Picker Title="Select a type" x:Name="UserType" ItemsSource="{Binding Type}" ItemDisplayBinding="{Binding TypeName}"/>
             <Button Text="Register" Clicked="RegisterClicked"/>
             <Button Text="Cancel" Clicked="CancelClicked"/>
 
