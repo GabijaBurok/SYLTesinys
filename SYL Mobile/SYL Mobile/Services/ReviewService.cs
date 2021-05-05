@@ -38,7 +38,7 @@ namespace SYL_Mobile.Services
             return false;
         }
 
-        public static async Task<IEnumerable<Reviews>> GetReviewsAsync(string seller, bool forceRefresh = false )
+        public static async Task<IEnumerable<ShopReviewDTO>> GetReviewsAsync(string seller, bool forceRefresh = false )
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SYL_Mobile.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    List<Reviews> reviews = JsonConvert.DeserializeObject<List<Reviews>>(responseBody);
+                    List<ShopReviewDTO> reviews = JsonConvert.DeserializeObject<List<ShopReviewDTO>>(responseBody);
                     if (reviews != null)
                     {
                         return reviews;
@@ -58,7 +58,7 @@ namespace SYL_Mobile.Services
             catch (Exception )
             { }
 
-            return new List<Reviews>();
+            return new List<ShopReviewDTO>();
 
         }
         public static async Task<Double> GetAvgReviewAsync(string seller, bool forceRefresh = false)

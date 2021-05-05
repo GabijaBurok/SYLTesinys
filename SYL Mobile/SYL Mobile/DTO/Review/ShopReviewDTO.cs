@@ -4,9 +4,8 @@ using System.Text;
 
 namespace SYL_Mobile.DTO.Review
 {
-    class NewReviewDTO
+    class ShopReviewDTO
     {
-        public string customerId { get; set; }
         public string customerName { get; set; }
         public string shopName { get; set; }
         public int reviewRating { get; set; }

@@ -52,6 +52,7 @@ namespace SYL_Mobile.ViewModels
             var review = new NewReviewDTO
             {
                 customerId = App.userId,
+                customerName = App.user.userName + " " + App.user.userLastName,
                 shopName = shopName,
                 reviewRating = rating,
                 reviewComment = comment
