@@ -18,17 +18,17 @@ namespace SYL_Mobile.Views
            
             AddReviewViewModel reviewView;
         
-        public AddReviewPage(string sellerName)
+        public AddReviewPage(string shopName)
         {
-            BindingContext = reviewView = new AddReviewViewModel(sellerName);
+            BindingContext = reviewView = new AddReviewViewModel(shopName);
             InitializeComponent();
-            _label.Text += sellerName;
+            _label.Text += shopName;
         
         }
 
         private void rating_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            
+            reviewView.rating = Convert.ToInt32(rating.Value);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SYL_Mobile.Services
 {
         private static readonly HttpClient client = new HttpClient();
 
-        public static async Task<bool> AddReviewAsync(NewReviewDTO review, String sellerName)
+        public static async Task<bool> AddReviewAsync(NewReviewDTO review)
         {
             var json = JsonConvert.SerializeObject(review);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");

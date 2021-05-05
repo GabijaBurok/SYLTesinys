@@ -73,7 +73,7 @@ namespace SYL_Mobile.ViewModels
                 var curPos = new Position(location.Latitude, location.Longitude);
                 Distance = Convert.ToString(Math.Round(Xamarin.Forms.Maps.Distance.BetweenPositions(position, curPos).Kilometers, 2)) + " km";
             }
-            catch (PermissionException e)
+            catch (PermissionException)
             {
                 Distance = "Unable to get distance.";
             }
