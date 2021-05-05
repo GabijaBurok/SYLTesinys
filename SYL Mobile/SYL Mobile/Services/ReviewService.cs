@@ -66,7 +66,7 @@ namespace SYL_Mobile.Services
 
             try
             {
-                string url = "http://localhost:5000/api/review/avg" + seller;
+                string url = "http://localhost:5000/api/review/avg/" + seller;
                 var response = await client.GetAsync(String.Format(url));
                 response.EnsureSuccessStatusCode();
                 if (response.IsSuccessStatusCode)
